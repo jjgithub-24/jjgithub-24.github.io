@@ -15,7 +15,10 @@
 </head>
 <body>
     <nav>
-        <ul>
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-menu">
             <li><a href="#home">Home</a></li>
             <li><a href="#education">Education</a></li>
             <li><a href="#experience">Experience</a></li>
@@ -80,7 +83,7 @@
     <section id="experience">
         <h2>Experience</h2>
         <div class="timeline">
-            <div class="timeline-item">
+            <div class="timeline-item" data-job="lead-tutor">
                 <div class="timeline-content">
                     <h3>Lead Tutor</h3>
                     <p>Oct 2018 - Present</p>
@@ -89,8 +92,9 @@
                     <p>- Assisted in hiring, mentoring, and scheduling new tutors, while implementing innovative study programs to enhance student learning and memorization techniques.</p>
                     <p>- Improved workplace efficiency and enjoyment by collaborating on visual, furniture, and color enhancements, and maintained a clean and organized environment.</p>
                 </div>
+                <div class="hidden-boxes-container"></div>
             </div>
-            <div class="timeline-item">
+            <div class="timeline-item" data-job="software-engineer">
                 <div class="timeline-content">
                     <h3>Software Engineering Fellow</h3>
                     <p><b>Headstarter AI</b></p>
@@ -99,14 +103,16 @@
                     <p>- Developed projects from design to deployment leading 4+ engineering fellows using MVC design patterns.</p>
                     <p>- Coached by Amazon, Bloomberg, and Capital One engineers on Agile, CI/CD, Git and microservice patterns.</p>
                 </div>
+                <div class="hidden-boxes-container"></div>
             </div>
-            <div class="timeline-item">
+            <div class="timeline-item" data-job="ceo-researcher">
                 <div class="timeline-content">
                     <h3>CEO & Lead Researcher</h3>
                     <p><b>O/REZ Labs</b></p>
                     <p>July 2024 - Present</p>
                     <p>- Leveraging technology, engineering principles, and homemade materials, to develop many projects based in Electrical Engineering, Cybersecurity, and AI.</p>
                 </div>
+                <div class="hidden-boxes-container"></div>
             </div>
         </div>
     </section>
@@ -114,9 +120,9 @@
     <section id="research"> 
         <div class="bento-grid">
             <h2>Research Activities</h2>
-            <div class="bento-item" data-description="Exploring oppurtunies to engage in research in Physics and Quantum Engineering">
-                <h3>Filler Box for First Research Project</h3>
-                <p class="skills">Skills: N/A</p>
+            <div class="bento-item" data-description="A research project focused on developing novel Tesla Coils that can be utilized in impoverished areas by leveraging power transfer technology.">
+                <h3>Development and Application of Novel Tesla Coils in Impoverished Areas in the World</h3>
+                <p class="skills">Skills: Electrical Engineering, Theoretical Analysis, Power Transfer Technology</p>
             </div>
         </div>
     </section>
@@ -157,6 +163,10 @@
             <div class="bento-item" data-description="Completed AT&T's Summer Technology Academy, an immersive program focused on advancing technical skills and industry knowledge. The academy covered various aspects of technology, including software development, data analysis, and network systems.">
                 <h3>AT&T 2024 Technology Academy</h3>
                 <p class="skills">Skills: Agile Programming, Software Development, Project Management</p>
+            </div>
+            <div class="bento-item" data-description="Completed CISCO's Computer Hardware Basics, an intensive course designed to teach the fundamentals of computer hardware and networking. The course covered key topics such as computer architecture, memory, and networking.">
+                <h3>CISCO's Computer Hardware Basics</h3>
+                <p class="skills">Skills: Computer Hardware, Troubleshooting, Networking</p>
             </div>
         </div>
     </section>
