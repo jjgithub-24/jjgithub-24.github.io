@@ -270,7 +270,9 @@ footer {
 }
 
 .timeline-item {
-    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
     margin-bottom: 60px;
 }
 
@@ -287,6 +289,30 @@ footer {
 }
 
 .timeline-content {
+    width: 45%;
+}
+
+.hidden-boxes-container {
+    width: 45%;
+}
+
+.timeline-item:nth-child(odd) .timeline-content {
+    order: 1;
+}
+
+.timeline-item:nth-child(odd) .hidden-boxes-container {
+    order: 2;
+}
+
+.timeline-item:nth-child(even) .timeline-content {
+    order: 2;
+}
+
+.timeline-item:nth-child(even) .hidden-boxes-container {
+    order: 1;
+}
+
+.timeline-content {
     position: relative;
     width: calc(50% - 40px);
     padding: 20px;
@@ -294,14 +320,6 @@ footer {
     border: 2px solid var(--purple-medium);
     border-radius: 10px;
     transition: all 0.3s ease;
-}
-
-.timeline-item:nth-child(odd) .timeline-content {
-    left: 0;
-}
-
-.timeline-item:nth-child(even) .timeline-content {
-    left: calc(50% + 40px);
 }
 
 .timeline-content h3 {
@@ -318,6 +336,47 @@ footer {
     background: rgba(147, 112, 219, 0.1);
     transform: scale(1.05);
     box-shadow: 0 0 20px rgba(147, 112, 219, 0.3);
+}
+
+.hidden-box {
+    background-color: var(--purple-dark);
+    border: 2px solid var(--purple-light);
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.hidden-box h4 {
+    color: var(--purple-light);
+    margin-bottom: 10px;
+}
+
+.hidden-box p {
+    color: var(--text-color);
+    font-size: 0.9em;
+}
+
+@media screen and (max-width: 768px) {
+    .timeline-item {
+        flex-direction: column;
+    }
+
+    .timeline-content,
+    .hidden-boxes-container {
+        width: 100%;
+    }
+
+    .timeline-item:nth-child(odd) .timeline-content,
+    .timeline-item:nth-child(even) .timeline-content {
+        order: 1;
+    }
+
+    .timeline-item:nth-child(odd) .hidden-boxes-container,
+    .timeline-item:nth-child(even) .hidden-boxes-container {
+        order: 2;
+    }
 }
 
 .bento-container {
@@ -541,5 +600,52 @@ footer {
   
     .timeline-content p {
       font-size: 14px;
+    }
+}
+
+.hidden-boxes-container {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+@media screen and (max-width: 768px) {
+    .hidden-box {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    nav .nav-menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: #000000;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    nav .nav-menu.active {
+        display: flex;
+    }
+
+    nav .nav-menu li {
+        margin: 10px 0;
+    }
+
+    .menu-toggle {
+        display: block;
+        font-size: 24px;
+        cursor: pointer;
+    }
+}
+
+@media screen and (min-width: 769px) {
+    .menu-toggle {
+        display: none;
     }
 }
