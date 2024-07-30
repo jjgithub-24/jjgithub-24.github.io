@@ -121,14 +121,14 @@ const quotes = [
     '"The most beautiful thing we can experience is the mysterious. It is the source of all true art and science." - Albert Einstein',
     '"Science is organized knowledge. Wisdom is organized life." - Immanuel Kant',
     '"The art and science of asking questions is the source of all knowledge." - Thomas Berger',
-    '"Science is the great antidote to the poison of enthusiasm and superstition." - Adam Smith',
+    '"Science is the antidote to the poison of enthusiasm and superstition." - Adam Smith',
     '"The aim of science is not to open the door to infinite wisdom, but to set a limit to infinite error." - Bertolt Brecht',
     '"Science is the acceptance of what works and the rejection of what does not." - Jacob Bronowski',
     '"The whole of science is nothing more than a refinement of everyday thinking." - Albert Einstein',
     '"Science is not about why, it\'s about why not." - Cave Johnson (Portal 2)',
     '"The most exciting phrase to hear in science, the one that heralds new discoveries, is not \'Eureka!\' but \'That\'s funny...\'." - Isaac Asimov',
     '"In science, the credit goes to the man who convinces the world, not to the man to whom the idea first occurs." - Francis Darwin',
-    '"Science is the great antidote to the poison of enthusiasm and superstition." - Adam Smith',
+    '"Science is the antidote to the poison of enthusiasm and superstition." - Adam Smith',
     '"The scientist only imposes two things, namely truth and sincerity, imposes them upon himself and upon other scientists." - Erwin Schrödinger',
     '"Science is simply common sense at its best." - Thomas Huxley',
     '"The beauty of a living thing is not the atoms that go into it, but the way those atoms are put together." - Carl Sagan',
@@ -344,4 +344,96 @@ document.addEventListener('DOMContentLoaded', () => {
       resetToMainBox();
     }
   });
+});
+
+// Experience section hidden boxes
+function setupExperienceSection() {
+    const timelineItems = document.querySelectorAll('.timeline-item');
+
+    const hiddenBoxesContent = {
+        'lead-tutor': [
+            { title: 'Publishing Student Stories', description: 'During the 2024 Summer Camp hosted by CIC, we helped student currate and illustrate their stories, which are being published in an anthology.' },
+            { title: 'Innovative Teaching Method', description: 'Developed an effective method for learning the times tables, increasing student retention by +200%.' }
+        ],
+        'software-engineer': [
+            { title: 'Portfolio Website', description: 'Leveraged AI to create a portfolio website that showcases my work and allows potential employers to easily navigate my projects.' },
+            { title: 'Pantry Tracker', description: 'Work In Progress' },
+            { title: 'AI Customer Support', description: 'Work In Progress' },
+            { title: 'AI Flashcards & Stripe', description: 'Work In Progress' },
+            { title: 'AI Rate My Professor', description: 'Work In Progress' }
+        ],
+        'ceo-researcher': [
+            { title: 'Novel Tesla Coils', description: 'Theorizing and Developing Tesla Coils that can be used to transfer sustainable power to low-income areas.' },
+        ]
+    };
+
+    function createHiddenBoxes(jobId, container) {
+        container.innerHTML = '';
+        hiddenBoxesContent[jobId].forEach(box => {
+            const boxElement = document.createElement('div');
+            boxElement.classList.add('hidden-box');
+            boxElement.innerHTML = `
+                <h4>${box.title}</h4>
+                <p>${box.description}</p>
+            `;
+            container.appendChild(boxElement);
+        });
+    }
+
+    function toggleHiddenBoxes(jobId, container) {
+        const allContainers = document.querySelectorAll('.hidden-boxes-container');
+        allContainers.forEach(cont => {
+            if (cont !== container) {
+                gsap.to(cont.children, {
+                    y: 50,
+                    opacity: 0,
+                    duration: 0.3,
+                    stagger: 0.05,
+                    ease: 'power3.in',
+                    onComplete: () => {
+                        cont.innerHTML = '';
+                    }
+                });
+            }
+        });
+
+        if (container.children.length === 0) {
+            createHiddenBoxes(jobId, container);
+            gsap.fromTo(container.children, 
+                { y: 50, opacity: 0 },
+                { y: 0, opacity: 1, duration: 0.5, stagger: 0.1, ease: 'power3.out' }
+            );
+        } else {
+            gsap.to(container.children, {
+                y: 50,
+                opacity: 0,
+                duration: 0.3,
+                stagger: 0.05,
+                ease: 'power3.in',
+                onComplete: () => {
+                    container.innerHTML = '';
+                }
+            });
+        }
+    }
+
+    timelineItems.forEach(item => {
+        const jobId = item.getAttribute('data-job');
+        const hiddenBoxesContainer = item.querySelector('.hidden-boxes-container');
+
+        item.addEventListener('click', () => {
+            toggleHiddenBoxes(jobId, hiddenBoxesContainer);
+        });
+    });
+}
+
+document.addEventListener('DOMContentLoaded', setupExperienceSection);
+
+document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+
+    menuToggle.addEventListener('click', function() {
+        navMenu.classList.toggle('active');
+    });
 });
